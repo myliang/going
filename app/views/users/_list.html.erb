@@ -1,0 +1,32 @@
+<table class="ui attached single line table">
+  <thead class="full-width">
+  <tr>
+    <th><%= User.human_attribute_name("email")%></th>
+    <th><%= User.human_attribute_name("state")%></th>
+    <th><%= User.human_attribute_name("created_at")%></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="warning">
+    <td colspan="6">
+      <%= page_entries_info @records %>
+    </td>
+  </tr>
+  <% @records.each do |record| %>
+    <tr>
+      <td><%= link_to record.email, user_path(record) %></td>
+      <td><%= User.human_attribute_name("state_#{record.state}") %></td>
+      <td><%= record.created_at %></td>
+    </tr>
+  <% end %>
+  </tbody>
+  <% if @records and @records.total_pages > 1 %>
+  <tfoot class="full-width">
+  <tr>
+    <th colspan="6">
+      <%= paginate @records, remote: true %>
+    </th>
+  </tr>
+  </tfoot>
+  <% end %>
+</table>

@@ -1,0 +1,9 @@
+<% if flash[:error] %>
+    <div class="ui warning message">
+      <%= flash[:error] %>
+    </div>
+<% elsif flash[:notice] %>
+    <div class="ui success message">
+      <%= flash[:notice] %>
+    </div>
+<% end %>

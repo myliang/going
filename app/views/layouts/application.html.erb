@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= t("logo") %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style type="text/css">
+      .ui.fluid.container {
+        padding-left: 17rem;
+        padding-right: 1rem;
+        padding-top: 8rem;
+      }
+
+    </style>
+  </head>
+
+  <body class="pushable">
+    <div class="pusher">
+      <%= render partial: "shared/navbar" %>
+      <div class="ui fluid container" id="jq_container">
+        <%= render partial: "shared/message" %>
+        <%= yield %>
+      </div>
+    </div>
+
+  </body>
+</html>

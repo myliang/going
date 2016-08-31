@@ -1,0 +1,38 @@
+<%= render "shared/index", _title: t("activerecord.models.role") do %>
+  <%= form_tag(roles_path, method: :get, class: "ui equal width form segment filter", remote: true) do %>
+      <div class="three fields">
+        <div class="field">
+          <input type="text" name="name" value="<%= params[:name]%>"
+                 placeholder="<%= Role.human_attribute_name("name")%>">
+        </div>
+        <div class="field">
+          <%= select_tag "state[]",
+                         options_for_select([[Role.human_attribute_name("state"), ""]] + Role::STATE_ALL, selected: params[:state]),
+                         class: "ui fluid dropdown", multiple: true %>
+        </div>
+        <div class="field">
+          <div class="ui buttons">
+            <button type="submit" class="ui animated button">
+              <div class="hidden content"><%= t("buttons.search") %></div>
+              <div class="visible content">
+                <i class="search icon"></i>
+              </div>
+            </button>
+            <% if can? :create, Role %>
+                <div class="or"></div>
+                <a href="<%= new_role_path %>" class="ui positive animated button">
+                  <div class="hidden content"><%= t("buttons.add") %></div>
+                  <div class="visible content">
+                    <i class="plus icon"></i>
+                  </div>
+                </a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+  <div id="jq_list">
+    <%= render "list" %>
+  </div>
+<% end %>

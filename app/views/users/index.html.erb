@@ -1,0 +1,47 @@
+<%= render "shared/index", _title: t("activerecord.models.user") do %>
+  <%= form_tag users_path, remote: true, method: :get, class: "ui equal width form segment filter" do %>
+    <div class="five fields">
+      <div class="field">
+        <input type="text" name="username" value="<%= params[:username]%>"
+               placeholder="<%= User.human_attribute_name("username")%>">
+      </div>
+      <div class="field">
+        <input type="text" name="real_name" value="<%= params[:real_name]%>"
+               placeholder="<%= User.human_attribute_name("real_name")%>">
+      </div>
+      <div class="field">
+        <input type="text" name="phone" value="<%= params[:phone]%>"
+               placeholder="<%= User.human_attribute_name("phone")%>">
+      </div>
+      <div class="field">
+        <%= select_tag "state[]",
+                       options_for_select([[User.human_attribute_name("state"), ""]] + User::STATE_ALL, selected: params[:state]),
+                       class: "ui fluid dropdown", multiple: true %>
+      </div>
+      <div class="field">
+        <div class="ui buttons">
+          <button type="submit" class="ui animated button">
+            <div class="hidden content"><%= t("buttons.search") %> </div>
+            <div class="visible content">
+              <i class="search icon"></i>
+            </div>
+          </button>
+          <% if can? :create, User %>
+            <div class="or"></div>
+            <a href="<%= new_user_path %>" class="ui positive animated button">
+              <div class="hidden content"><%= t("buttons.add") %></div>
+              <div class="visible content">
+                <i class="plus icon"></i>
+              </div>
+            </a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
+  <div id="jq_list">
+    <%= render "list" %>
+  </div>
+<% end %>

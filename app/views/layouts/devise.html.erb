@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t("logo") %></title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <style type="text/css">
+    body {
+      margin-left: 0;
+    }
+    .ui.container  {
+      max-width: 400px!important;
+      margin-top: 5rem;
+    }
+    .ui.field.near input {
+      padding: 0.9rem 1.2rem;
+    }
+    .ui.field.near input.first, .ui.field.near input.first:focus {
+      margin-bottom: -1px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .ui.field.near input.step, .ui.field.near input.step:focus {
+      border-radius: 0;
+    }
+    .ui.field.near input.last, .ui.field.near input.last:focus {
+      margin-top: -1px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  </style>
+</head>
+
+<body class="pushable">
+  <div class="pusher">
+    <div class="ui container">
+      <%= yield %>
+    </div>
+  </div>
+</body>
+</html>

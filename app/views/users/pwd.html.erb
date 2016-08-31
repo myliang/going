@@ -1,0 +1,11 @@
+<%= render "shared/new_edit", _title: "#{t("activerecord.attributes.user.password")} / #{@record.username}",
+           _method: :put, _path: user_path(@record) do |f| %>
+
+  <div class="field">
+    <%= f.text_field :password, value: SystemProfile.init_password,
+                     placeholder: t("activerecord.attributes.user.password"), readOnly: true %>
+  </div>
+
+<% end %>
+
+

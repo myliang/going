@@ -1,0 +1,11 @@
+<div class="ui attached warning segment">
+  <div class="ui top attached label">Log Records</div>
+  <ul class="ui list">
+    <% @record.audits.each do |audit|%>
+        <li>
+          <span class="ui horizontal label"><%= audit.created_at %></span>
+          <%= audit.audited_changes %>
+        </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,26 @@
+<div class="ui grid">
+  <div class="thirteen wide column">
+    <div class="ui segment">
+      <%= form_for(current_user, as: "r", url: "/my/pwd", html: {method: :put, class: "ui form"}) do |f| %>
+          <div class="required field">
+            <label><%= User.human_attribute_name("password") %></label>
+            <input type="password" name="old_password" autocomplete="off" required/>
+          </div>
+          <div class="required field">
+            <label><%= User.human_attribute_name("new_password") %></label>
+            <input type="password" name="new_password" autocomplete="off" required/>
+          </div>
+          <div class="required field">
+            <label><%= User.human_attribute_name("confirm_password") %></label>
+            <input type="password" name="confirm_password" autocomplete="off" required/>
+          </div>
+          <button class="ui blue button" type="submit"><%= t("buttons.save")%></button>
+      <% end %>
+    </div>
+  </div>
+  <div class="three wide column">
+    <div class="ui right vertical fluid menu">
+      <a class="active item" href="/my/pwd">Reset Password </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<% if @record.errors.blank? %>
+Turbolinks.clearCache();
+Turbolinks.visit("<%=users_path%>", {"action":"replace"});
+<% else %>
+$("#jq_container").html("<%= escape_javascript(render "edit") %>");
+<% end %>

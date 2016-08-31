@@ -1,0 +1,80 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  logo: "Going"
+  views:
+    show: "Show"
+    edit: "Edit"
+    new: "New"
+    init: "Init"
+  buttons:
+    search: "Search"
+    add: "Add"
+    new: "New"
+    save: "Save"
+    reset: "Reset"
+    back: "Back"
+    update: "Update"
+    upload: "Upload"
+    import: "Import"
+    export: "Export"
+    destroy: "Destroy"
+  activerecord:
+    models:
+      user: "User"
+      role: "Role"
+    attributes:
+      default: &default
+        id: "Id"
+        code: 'Code'
+        type: 'Type'
+        name: 'Name'
+        short_name: "Short Name"
+        note: 'Note'
+        state: "State"
+        state_empty: "Empty"
+        state_able: "Able"
+        state_disabled: "Disabled"
+        state_deleted: "Deleted"
+        reason: "Reason"
+        start_date: "Start Date"
+        end_date: "End Date"
+        days: "Days"
+        created_at: "Create Date"
+        updated_at: "Update Date"
+        year: "Year"
+        month: "Month"
+        file: "File"
+        operator: "Operator"
+        sort: "Sort"
+      user:
+        <<: *default
+        username: "Username"
+        email: "Email"
+        password: "Password"
+        role: "Role"
+        old_password: "Old Password"
+        new_password: "New Password"
+        confirm_password: "Confirm Password"
+      role:
+        <<: *default
+        rule: "Rule"

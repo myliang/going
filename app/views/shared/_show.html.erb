@@ -1,0 +1,11 @@
+<div class="ui segments">
+  <div class="ui secondary segment">
+    <h5>
+      <a href="javascript:window.history.go(-1);" class="ui icon">
+        <i class="left chevron icon"></i>
+      </a><%= t("views.show") %><%= _title %>
+    </h5>
+  </div>
+  <%= yield %>
+  <%#= render partial: "shared/log_record" %>
+</div>

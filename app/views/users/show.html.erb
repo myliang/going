@@ -1,0 +1,41 @@
+<%= render "shared/show", _title: t("activerecord.models.user") do %>
+  <table class="ui attached definition table">
+    <tbody>
+    <tr>
+      <td class="two wide column grey"><%= User.human_attribute_name("email") %></td>
+      <td><%= @record.email %></td>
+    </tr>
+    <tr>
+      <td><%= User.human_attribute_name("role") %></td>
+      <td><%= @record.role and @record.role.name %></td>
+    </tr>
+    <tr>
+      <td><%= User.human_attribute_name("state") %></td>
+      <td><%= User.human_attribute_name("state_#{@record.state}") %></td>
+    </tr>
+    <tr>
+      <td><%= User.human_attribute_name("created_at") %></td>
+      <td><%= @record.created_at %></td>
+    </tr>
+    </tbody>
+    <tfoot class="full-width">
+    <tr>
+      <th colspan="2">
+        <div class="ui buttons">
+          <a href="javascript:window.history.go(-1);" class="ui icon button">
+            <i class="left chevron icon"></i>
+          </a>
+          <% if can? :update, @record %>
+            <div class="or"></div>
+            <a href="<%= edit_user_path @record %>" class="ui button"><%= t("views.edit") %></a>
+          <% end %>
+          <% if can? :pwd, @record %>
+            <div class="or"></div>
+            <a href="<%= pwd_user_path @record %>" class="ui button"><%= t("views.init") + " " + t("activerecord.attributes.user.password") %></a>
+          <% end %>
+        </div>
+      </th>
+    </tr>
+    </tfoot>
+  </table>
+<% end %>

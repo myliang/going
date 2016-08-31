@@ -1,0 +1,39 @@
+<div class="ui segments">
+  <div class="ui attached secondary segment">
+    <h5>
+      <a href="javascript:window.history.go(-1);" class="ui icon">
+        <i class="left chevron icon"></i>
+      </a><%= t("buttons.import") %><%= _title %>
+    </h5>
+  </div>
+  <% if !@errors.empty? %>
+      <div class="ui warning attached message">
+        <ul class="list">
+          <% @errors.each do |index, error| %>
+              <li>
+                第<%= index %>行: <%= error.is_a?(String) ? error : error.full_messages.join(' ') %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+  <div class="ui attached segment">
+    <%= yield %>
+    <%= form_tag(_path, multipart: true, class: "ui form", method: :post) do %>
+        <div class="field required">
+          <div class="ui input">
+            <input type="file" name="file" accept="application/vnd.ms-excel" required>
+          </div>
+        </div>
+
+        <div class="ui buttons">
+          <a href="javascript:window.history.go(-1);" class="ui icon button">
+            <i class="left chevron icon"></i>
+          </a>
+          <div class="or"></div>
+          <button class="ui teal button" type="submit"><%= t("buttons.upload")%></button>
+        </div>
+    <% end %>
+
+  </div>
+</div>

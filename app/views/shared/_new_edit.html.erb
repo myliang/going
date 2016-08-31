@@ -1,0 +1,30 @@
+<div class="ui segments">
+  <div class="ui secondary <%= "attached" unless @record.errors.empty? %> segment">
+    <h5>
+      <a href="javascript:window.history.go(-1);" class="ui icon">
+        <i class="left chevron icon"></i>
+      </a><%= t("views.#{_method == :post ? "new" : "edit"}") %> <%= _title %>
+    </h5>
+  </div>
+  <% unless @record.errors.empty? %>
+      <div class="ui warning attached message">
+        <ul class="list">
+          <% @record.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+  <%= form_for(@record, as: "r", url: _path, html: {remote: true, method: _method, class: "ui form segment"}) do |f| %>
+      <%= yield f %>
+      <div class="ui buttons">
+        <a href="javascript:window.history.go(-1);" class="ui icon button">
+          <i class="left chevron icon"></i>
+        </a>
+        <div class="or"></div>
+        <button class="ui blue button" type="submit"><%= t("buttons.save") %></button>
+        <div class="or"></div>
+        <button class="ui button" type="reset"><%= t("buttons.reset") %></button>
+      </div>
+  <% end %>
+</div>

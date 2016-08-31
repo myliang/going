@@ -1,0 +1,32 @@
+<% if notice %>
+    <div class="ui warning message"><%= notice %></div>
+<% elsif alert %>
+    <div class="ui warning message"><%= alert %></div>
+<% end %>
+
+<div class="ui segments">
+  <div class="ui secondary segment header">
+    <%= t("logo")%> - Welcome Login
+  </div>
+  <div class="ui segment">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "ui form"}) do |f| %>
+        <div class="ui field near">
+          <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "first" %>
+          <%= f.password_field :password, placeholder: "Password", class: "last" %>
+        </div>
+        <% if devise_mapping.rememberable? -%>
+            <div class="field">
+              <div class="ui checkbox">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            </div>
+        <% end -%>
+        <button class="ui primary button" type="submit">Login</button>
+
+    <% end %>
+  </div>
+  <div class="ui segment">
+    <p>Support chrome, firefox, opera ...</p>
+  </div>
+</div>

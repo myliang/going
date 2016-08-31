@@ -1,0 +1,39 @@
+<nav class="navbar">
+  <div class="logo"><h3><i class="lightning icon"></i> <%= t("logo") %></h3></div>
+  <ul>
+    <li class="<%= request.fullpath == '/' ? "active" : ""%>"><a href="/">首页</a></li>
+    <% user_menus_functions.each do |k, v|%>
+        <li class="<%= params[:menu] == k.to_s ? "active" : "" %>">
+          <a href="/menus/<%=k%>" href=""><%= t("menus.#{k}") %></a>
+        </li>
+    <% end %>
+
+    <li style="float: right;">
+      <div class="ui right top pointing dropdown">
+        <div class="text"><%= current_user.username %></div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <a class="item" href="/my/base_info"> 设置 </a>
+          <a class="item" href="/users/sign_out">退出</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<div class="navbar-left">
+<% if params[:menu] %>
+  <div class="ui blue vertical menu">
+    <% user_menus_functions(params[:menu]).each do |k, v| %>
+      <a class="blue item <% if request.fullpath.start_with? "/#{k.to_s.tableize}" %>active<%end%>"
+         href="/<%= k.to_s.tableize %>">
+        <%= t("activerecord.models.#{k.to_s.underscore}") %>
+      </a>
+    <% end %>
+  </div>
+<% else %>
+  <div class="effect logo">
+    <i class="lightning icon"></i>
+  </div>
+<% end %>
+</div>

@@ -1,0 +1,23 @@
+<%= render "shared/new_edit", _title: t("activerecord.models.role"), _method: :put, _path: role_path(@record) do |f| %>
+
+  <div class="required field <%unless @record.errors[:name].empty?%>error<%end%>">
+    <label><%= Role.human_attribute_name("name")%></label>
+    <%= f.text_field :name, required: true %>
+  </div>
+
+  <% Ability::ROLE_RESOURCES.each do |k, v| %>
+      <div class="inline fields">
+        <label><%= t("activerecord.models.#{k.to_s.underscore}") %></label>
+        <% v.each do |o| %>
+            <div class="field">
+              <input type="checkbox" name="rule[]"
+                     <% if rule_checked?(@record.rule, "#{k}", "#{o}") %>checked<% end %>
+                     value="<%= "#{k},#{o}" %>"/>
+              <label><%= o %></label>
+            </div>
+
+        <% end %>
+      </div>
+  <% end %>
+
+<% end %>
